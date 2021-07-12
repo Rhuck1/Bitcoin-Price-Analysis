@@ -69,7 +69,7 @@ def decomposition_components(dataframe):
         }
 
         titles = {
-            'Original': 'Log Scaled Price',
+            'Original': 'Price',
             'Trend': 'Trend',
             'Seasonal': 'Seasonal',
             'Residual': 'Residual'
