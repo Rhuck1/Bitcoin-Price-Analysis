@@ -27,7 +27,7 @@ def test_stationarity(dataframe, model=adfuller):
     # Plot rolling statistics
     fig = go.Figure()
     
-    fig.add_trace(go.Line(x=dataframe.index, y=dataframe, line=dict(color='blue'), name='Original Log Scale'))
+    fig.add_trace(go.Line(x=dataframe.index, y=dataframe, line=dict(color='blue'), name='Original'))
     fig.add_trace(go.Line(x=dataframe.index, y=movingAverage, line=dict(color='orange'), name='Rolling Mean'))
     fig.add_trace(go.Line(x=dataframe.index, y=movingSTD, line=dict(color='aqua'), name='Rolling STD'))
     
