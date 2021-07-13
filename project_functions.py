@@ -83,7 +83,7 @@ def decomposition_components(dataframe):
         
         
 def timestep_creator(dataframe, timesteps=60, reshape=False):
-    '''Input: dataframe of size (n, 1)
+    '''Input: dataframe or nd.array of size (n, 1)
               number of timesteps (aka len(array)) samples from the dataframe
               reshape arrays to size (n, 1, 1) for purposes of LSTM ML 3D input requirements
               
@@ -92,13 +92,24 @@ def timestep_creator(dataframe, timesteps=60, reshape=False):
       
     X_train = []
     y_train = []
+    
+    if type(dataframe) == np.ndarray:
+        
+        for i in range(60, dataframe.shape[0]):
+            
+            X_train.append(dataframe[i - timesteps: i, 0])
+            y_train.append(dataframe[i, 0])
+            
+        X_train, y_train = np.array(X_train), np.array(y_train)
+    
+    else:
+        
+        for i in range(60, dataframe.shape[0]):
 
-    for i in range(60, dataframe.shape[0]):
-        
-        X_train.append(dataframe.iloc[i - timesteps: i, 0])
-        y_train.append(dataframe.iloc[i, 0])
-        
-    X_train, y_train = np.array(X_train), np.array(y_train)
+            X_train.append(dataframe.iloc[i - timesteps: i, 0])
+            y_train.append(dataframe.iloc[i, 0])
+
+        X_train, y_train = np.array(X_train), np.array(y_train)
     
     if reshape:
 
