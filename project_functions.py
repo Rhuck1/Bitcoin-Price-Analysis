@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objs as go
 import plotly.express as px
 
-from statsmodels.tsa.stattools import adfuller
+from statsmodels.tsa.stattools import adfuller, acf, pacf
 from statsmodels.tsa.seasonal import seasonal_decompose
 
 # statsmodels.tsa.filters.hp_filter.hpfilter
@@ -49,7 +49,7 @@ def test_stationarity(dataframe, model=adfuller):
     print(dfoutput)
 
 
-
+    
 def decomposition_components(dataframe):
     
     decomposition = seasonal_decompose(dataframe)
@@ -58,7 +58,8 @@ def decomposition_components(dataframe):
     trend = decomposition.trend
     seasonal = decomposition.seasonal
     residual = decomposition.resid
-   
+    
+    # Plot decomposition components
     for plot in ['Original', 'Trend', 'Seasonal', 'Residual']:
 
         plots = {
@@ -80,8 +81,31 @@ def decomposition_components(dataframe):
 
         fig.show()
 
+
+        
+def plot_acf_pacf(dataframe, n_lags):
+    
+    lag_acf = acf(dataframe, nlags=n_lags, fft=False)
+    lag_pacf = pacf(dataframe, nlags=n_lags, method='ols')
+    
+    plots = {
+        'Autocorrelation Function': lag_acf,
+        'Partial Autocorrelation Function': lag_pacf
+    }
+    
+    # Plot ACF and PACF
+    for title in plots.keys():
+        
+        fig = px.line(y=plots[title], template='none')
+        fig.add_hline(y=0, line_dash='dash', line_color='grey')
+        fig.add_hline(y=0, line_dash='dash', line_color='grey')
+        fig.add_hline(y=0, line_dash='dash', line_color='grey')
+        fig.update_layout(title=title)
+        
+        fig.show()        
         
         
+                
 def timestep_creator(dataframe, timesteps=60, reshape=False):
     '''Input: dataframe or nd.array of size (n, 1)
               number of timesteps (aka len(array)) samples from the dataframe
