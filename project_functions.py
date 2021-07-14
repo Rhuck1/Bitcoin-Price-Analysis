@@ -103,9 +103,24 @@ def plot_acf_pacf(dataframe, n_lags):
         fig.update_layout(title=title)
         
         fig.show()        
+
+
+        
+def get_hurst_exponent(time_series, max_lag=20):
+    """Returns the Hurst Exponent of the time series"""
+    
+    lags = range(2, max_lag)
+
+    # variances of the lagged differences
+    tau = [np.std(np.subtract(time_series[lag:], time_series[:-lag])) for lag in lags]
+
+    # calculate the slope of the log plot -> the Hurst Exponent
+    reg = np.polyfit(np.log(lags), np.log(tau), 1)
+
+    return reg[0]        
         
         
-                
+                       
 def timestep_creator(dataframe, timesteps=60, reshape=False):
     '''Input: dataframe or nd.array of size (n, 1)
               number of timesteps (aka len(array)) samples from the dataframe
