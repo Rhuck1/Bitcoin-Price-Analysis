@@ -134,7 +134,7 @@ def timestep_creator(dataframe, timesteps=60, reshape=False):
     
     if type(dataframe) == np.ndarray:
         
-        for i in range(60, dataframe.shape[0]):
+        for i in range(timesteps, dataframe.shape[0]):
             
             X_train.append(dataframe[i - timesteps: i, 0])
             y_train.append(dataframe[i, 0])
@@ -143,7 +143,7 @@ def timestep_creator(dataframe, timesteps=60, reshape=False):
     
     else:
         
-        for i in range(60, dataframe.shape[0]):
+        for i in range(timesteps, dataframe.shape[0]):
 
             X_train.append(dataframe.iloc[i - timesteps: i, 0])
             y_train.append(dataframe.iloc[i, 0])
