@@ -107,7 +107,7 @@ def plot_acf_pacf(dataframe, n_lags):
 
         
 def get_hurst_exponent(time_series, max_lag=20):
-    """Returns the Hurst Exponent of the time series"""
+    '''Returns the Hurst Exponent of the time series'''
     
     lags = range(2, max_lag)
 
@@ -158,3 +158,29 @@ def timestep_creator(dataframe, timesteps=60, reshape=False):
     return X_train, y_train
 
 
+
+def rolling_forecast_orign(train, min_train_size, horizon):
+    '''Rolling Forecast Origin Generator
+       Stride is inherently 1    
+    '''
+    
+    for i in range(len(train) - min_train_size - horizon + 1):
+        
+        split_train = train[: min_train_size + i]
+        split_val = train[min_train_size + i: min_train_size + i + horizon]
+        
+        yield split_train, split_val
+        
+
+        
+def sliding_window(train, window_size, horizon):
+    '''Sliding window generator
+       Stride is inherently 1
+    '''
+    
+    for i in range(len(train) - window_size - horizon + 1):
+        
+        split_train = train[i: window_size + i]
+        split_val = train[i + window_size: window_size + i + horizon]
+        
+        yield split_train, split_val
