@@ -159,7 +159,7 @@ def timestep_creator(dataframe, timesteps=60, reshape=False):
 
 
 
-def rolling_forecast_orign(train, min_train_size, horizon):
+def rolling_forecast_origin(train, min_train_size, horizon):
     '''Rolling Forecast Origin Generator
        Stride is inherently 1    
     '''
