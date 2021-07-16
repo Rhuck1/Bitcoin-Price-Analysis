@@ -87,10 +87,42 @@ Now, let's consider what non-stationary data looks like when utilizing the Autoc
 
 Now, consider our transformed data after applying both the Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF).  
 
+The ACF describes how well the present value of the series is related with its past values. It can reveal frequency components of a timeseries and by simply changing lag values it can to help determine what seasonality is present within the data.  
+
+The PACF finds the correlation of the residuals (which remain after removing the effects which were already explained by the earlier lag(s)) with the next lag value. Hence ‘partial’ and not ‘complete’ as we remove already found variations before we find the next correlation. If there is any hidden information in the residual which can be modeled by the next lag, we might get a good correlation and we will keep that next lag as a feature while modeling.
+
 <img src='images/acf_12lags.png'>  
 
 <img src='images/pacf_12lags.png'>  
 
+|   Terms   |         ACF        |          PACF      |
+|:----------|--------------------|-------------------:|
+|    AR     |   Geometric Decay  | p Significant Lags |
+|    MA     | q Significant Lags |   Geometric Decay  |
+|   ARMA    |   Geometric Decay  |   Geometric Decay  |
+
+## Hurst Exponent:  
+## A quick way to investigate if a given time series is trending, mean-reverting or random walking
+
+We can use the Hurst exponent to measure the amount by which a time series deviates from a random walk. The scalar represents the relative tendency of a time series either to regress strongly to the mean (mean-reverting pattern) or to cluster in a certain direction (trending pattern).   
+
+The values of the Hurst exponent range between 0 and 1. Based on the value of H, we can classify any time series into one of the three categories:
+
+* H < 0.5: A mean-reverting (anti-persistent) series. The closer the value is to 0, the stronger the mean-reversion process is. In practice, it means that a high     value is followed by a low value and vice-versa.
+* H = 0.5: A geometric random walk.
+* H > 0.5: A trending (persistent) series. The closer the value is to 1, the stronger the trend. In practice, it means that a high value is followed by a higher one.  
+
+Below are the Hurst exponent's for our transformed dataset at various lags. The exponents trend toward zero are indicative that our transformed data exhibit mean-reverting behavior:  
+
+|  Hurst Exponent  |          |
+|:-----------------|---------:|
+|  7 lags          |  0.3607  |
+|  12 lags         |  0.3585  |
+|  20 lags         |  0.2626  |
+|  100 lags        |  0.0883  |
+|  300 lags        |  0.0314  |
+|  500 lags        |  0.0120  |
+|  1000 lags       |  0.0065  |
 
 
 <!-- <img src="images/time-series.jpeg" width="800"> -->
