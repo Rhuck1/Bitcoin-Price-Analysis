@@ -98,8 +98,15 @@ def plot_acf_pacf(dataframe, n_lags):
         
         fig = px.line(y=plots[title], template='none')
         fig.add_hline(y=0, line_dash='dash', line_color='grey')
-        fig.add_hline(y=0, line_dash='dash', line_color='grey')
-        fig.add_hline(y=0, line_dash='dash', line_color='grey')
+        
+        #  Are hese are supposed to be confidence intervals, sigma (STD of data) * 1.96???
+        fig.add_hline(y=-1.96 / np.sqrt(len(dataframe)), line_dash='dash', line_color='grey', annotation_text="Confidence Interval", 
+              annotation_position="bottom right")
+        fig.add_hline(y=1.96 / np.sqrt(len(dataframe)), line_dash='dash', line_color='grey', annotation_text="Confidence Interval", 
+              annotation_position="upper right")
+        
+        fig.update_xaxis(title='Number of Lags')
+
         fig.update_layout(title=title)
         
         fig.show()        

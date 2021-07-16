@@ -85,7 +85,14 @@ Now, let's consider what non-stationary data looks like when utilizing the Autoc
 
 <img src='images/ex_non_station_acf.png'>  
 
-Now, consider our transformed data above when utilized with both the Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF)
+Now, consider our transformed data after applying both the Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF).  
+
+<img src='images/acf_12lags.png'>  
+
+<img src='images/pacf_12lags.png'>  
+
+
+
 <!-- <img src="images/time-series.jpeg" width="800"> -->
 
 
