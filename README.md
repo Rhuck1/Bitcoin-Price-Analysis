@@ -4,11 +4,11 @@
 
 ## Motivation  
 
-It would be an understatement to say that there is a lot of hype surrounding cryptocurrency, especially Bitcoin. Perhaps much of the hype is due to the novelty. Perhaps the hype is due to the practicality of a digial currency. We'll leave the speculation to future historians and focus on analyzing Bitcoin closing price as both a timeseries problem and a machine learning problem.
+It would be an understatement to say that there is a lot of hype surrounding cryptocurrency, especially Bitcoin. Perhaps much of the hype is due to the novelty. Perhaps the hype is due to the practicality of a digital currency. We'll leave the speculation to future historians and focus on analyzing Bitcoin closing price as both a timeseries problem and a machine learning problem.
 
 ## Data Origins
 
-The data for this project comes via investpy, a Python package to retrieve data from Investing.com, which provides data retrieval from up stocks, funds, ETFs, currency crosses, indicies, bonds, commodities, certificates, and cryptocurrencies.  
+The data for this project comes via investpy, a Python package to retrieve data from Investing.com, which provides data retrieval from up stocks, funds, ETFs, currency crosses, indices, bonds, commodities, certificates, and cryptocurrencies.  
 
 It allows the download of both recent and historical data and includes data from countries all over the world. AND (this is key) it seeks to stop relying on public/private APIs which can be deprecated or dicontinued leading to frustration and/or broken applications created around said APIs. This was my case and why I did not use yfinance.  
 
