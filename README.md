@@ -18,7 +18,7 @@ https://pypi.org/project/investpy/
 
 ## Regarding the Data  
 
-The data is contrained in a typical timeseries format as can seen below. My analysis was focused on utilizing the 'Close' price for each date in the timeseries. Any additional columns presented or tranformations performed were on this column only.
+The data is contrained in a typical timeseries format as can seen below. My analysis was focused on utilizing the 'Close' price for each date in the time series. Any additional columns presented or tranformations performed were on this column only.
 
 | Date                |   Open |   High |   Low |   Close |   Volume | Currency   |
 |:--------------------|-------:|-------:|------:|--------:|---------:|:-----------|
@@ -38,7 +38,7 @@ We can begin our analysis by looking at the historical 'Close' price next to bot
 
 <img src='images/btc_log_rtn.png'>  
 
-To emphasize this point, let's take a look at the 'Close' price in Logscale. We can clearly see a trending mean which in timeseries vernacular means the data is non-stationary. In order to build an accurate forecast model from the timeseries data we have to verify sationarity. We can do so by looking at the rolling mean and standard deviation in addition to considering the results of the Dicky Fuller Test.
+To emphasize the non-stationarity of the data, let's take a look at the 'Close' price in Logscale. We can clearly see a trending mean which in time series vernacular means the data is non-stationary. In order to build an accurate forecast model from the time series data we have to verify stationarity. We can do so by looking at the rolling mean and standard deviation in addition to considering the results of the Dicky Fuller Test.
 
 <img src='images/df_logscale.png'>  
 
@@ -61,9 +61,9 @@ From our Logscaled 'Close' price above we have the following results from the Di
 |  Critical Value (10%)          |         -2.567154  |
 
 
-In this first case we see that my Test Statistic = -2.502613 is greated than the Critical Value (5%) = -2.862261. Therefore, we fail to reject the Null Hypothesis and have further confirmation that the data is not stationary.  
+In this first case we see that my Test Statistic = -2.502613 is greater than the Critical Value (5%) = -2.862261. Therefore, we fail to reject the Null Hypothesis and have further confirmation that the data is not stationary.  
 
-Let's attempt another transformation of the data to see if we can estalish stationarity. This time we will take our logscaled data above and subtract the moving average which results in perhaps the appearance of seasonal or cyclical
+Let's attempt another transformation of the data to see if we can establish stationarity. This time we will take our logscaled data above and subtract the moving average which results in perhaps the appearance of seasonal or cyclical cycles.
 
 <img src='images/df_logscale_less_mean.png'>  
 
@@ -87,7 +87,7 @@ Now, let's consider what non-stationary data looks like when utilizing the Autoc
 
 Now, consider our transformed data after applying both the Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF).  
 
-The ACF describes how well the present value of the series is related with its past values. It can reveal frequency components of a timeseries and by simply changing lag values it can to help determine what seasonality is present within the data.  
+The ACF describes how well the present value of the series is related with its past values. It can reveal frequency components of a time series and by simply changing lag values it can to help determine what seasonality is present within the data.  
 
 The PACF finds the correlation of the residuals (which remain after removing the effects which were already explained by the earlier lag(s)) with the next lag value. Hence ‘partial’ and not ‘complete’ as we remove already found variations before we find the next correlation. If there is any hidden information in the residual which can be modeled by the next lag, we might get a good correlation and we will keep that next lag as a feature while modeling.
 
