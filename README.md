@@ -112,7 +112,7 @@ The values of the Hurst exponent range between 0 and 1. Based on the value of H,
 * H = 0.5: A geometric random walk.
 * H > 0.5: A trending (persistent) series. The closer the value is to 1, the stronger the trend. In practice, it means that a high value is followed by a higher one.  
 
-Below are the Hurst exponent's for our transformed dataset at various lags. The exponents trend toward zero are indicative that our transformed data exhibit mean-reverting behavior:  
+Below is the Hurst exponent for our transformed dataset at various lags. The exponents trend toward zero are indicative that our transformed data exhibit mean-reverting behavior:  
 
 |  Hurst Exponent  |          |
 |:-----------------|---------:|
